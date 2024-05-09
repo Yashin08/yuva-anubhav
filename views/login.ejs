@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        /* Style the dropdown options */
+        .dropdown-content a.volunteer {
+            background-color: #ff9800;
+            /* Orange */
+            color: white;
+        }
+
+        .dropdown-content a.regular-user {
+            background-color: #2196f3;
+            /* Blue */
+            color: white;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-gradient-to-r from-[#F28383] from-10% via-[#9D6CD2] via-30% to-[#481EDC] to-90% justify-center items-center">
+    <div class="grid justify-center items-center space ">
+        <header class="flex place-content-evenly">
+            <div class="">
+                <!-- logo of project -->
+                <i></i>
+            </div>
+            <nav>
+                <div class="flex justify-center items-center w-full place-content-evenly">
+                    <a href="#"
+                        class="px-10 text-white text-bold border-b-2 border-transparent hover:border-blue-500 transition-all duration-300">Home</a>
+                    <a href="#"
+                        class="px-10  text-white text-bold border-b-2 border-transparent hover:border-blue-500 transition-all duration-300">About
+                        Us</a>
+                    <a href="#"
+                        class="px-10 text-white text-bold border-b-2 border-transparent hover:border-blue-500 transition-all duration-300">Chat
+                        and Support</a>
+                    <a href="#"
+                        class="px-10 text-white text-bold border-b-2 border-transparent hover:border-blue-500 transition-all duration-300">
+                        <i class="fa-solid fa-toggle-on"></i>
+                        Dark Mode
+                    </a>
+                </div>
+
+            </nav>
+        </header>
+        <!-- hero section image and login form -->
+        <section
+            class="max-w-[960px] bg-blackDark grid grid-cols-2 gap-20  items-center justify-center h-screen p-5 rounded-2xl  ">
+            <div class="mx-10">
+                <!-- image -->
+
+                <img src="Grandma online.gif" alt="no image" class="w-25px h-30px">
+            </div>
+            <div class="max-w-80 grid gap-5">
+                <h1 class="text-5xl font-bold text-white">Log In</h1>
+                <p class="text-dullwhite">Short intro to web site </p>
+                <form action="" class="space-y-6 text-white">
+                    <div class="relative">
+                        <div
+                            class="absolute top-1 left-1 bg-whitemedium rounded-full p-2 flex items-center justify-center text-blue-300">
+                            <!-- icon -->
+                            <i class="fa-solid fa-envelope-open"></i>
+                        </div>
+                        <input type="email" placeholder="Email Address"
+                            class="w-80 bg-whitelight py-2 px-12 rounded-full focus:bg-blackDark focus:outline-none focus:ring focus:ring-neonblue focus:drop-shadow-lg ">
+                    </div>
+                    <div class="relative">
+                        <div
+                            class="absolute top-1 left-1 bg-whitemedium rounded-full p-2 flex items-center justify-center text-blue-300">
+                            <!-- icon -->
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <input type="password" placeholder="Password"
+                            class="w-80 bg-whitelight py-2 px-12 rounded-full focus:bg-blackDark focus:outline-none focus:ring focus:ring-neonblue focus:drop-shadow-lg ">
+                    </div>
+                    <button
+                        class="bg-gradient-to-r from-blue-400 to-cyan-200 w-80 font-semibold rounded-full py-2 hover:text-black">Sign
+                        in</button>
+                </form>
+                <div class="text-dullwhite border-t border-whitelight pt-4 space-y-4 text-small">
+                    <div class="dropdown">
+                        <p>Don't have an account ? <a class="hover:text-neonblue font-semibold cursor-pointer">Sign
+                                Up</a></p>
+                        <div class="dropdown-content">
+                            <a href="signup_vl" class="volunteer">Volunteer</a>
+                            <a href="/signup_user" class="regular-user">Regular User</a>
+                        </div>
+                    </div>
+                    <p>Forgot password ? <a class="hover:text-neonblue font-semibold cursor-pointer ">Reset password</a>
+                    </p>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>

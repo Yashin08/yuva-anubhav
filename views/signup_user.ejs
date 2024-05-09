@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Signup</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            background: linear-gradient(to right, #F28383 10%, #9D6CD2 30%, #481EDC 90%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .card-container {
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            transition: transform 0.5s;
+            display: none;
+        }
+
+        .active-card {
+            display: block;
+        }
+
+        .user-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        svg {
+            width: 24px;
+            height: auto;
+            margin-right: 8px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: calc(100% - 12px);
+            margin-bottom: 10px;
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            width: auto;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .next-button,
+        .back-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+
+        .next-button:hover,
+        .back-button:hover {
+            background-color: #45a049;
+        }
+
+        .error-container {
+            color: #ff0000;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="user-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path
+                d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
+        </svg>
+        <h2>User Signup</h2>
+    </div>
+
+    <form id="signupForm" action="/signup_user" method="POST">
+        <div class="card-container active-card" id="card1">
+            <label for="username">Username:</label><br />
+            <input type="text" id="username" name="username" required /><br />
+
+            <label for="firstname">First Name:</label><br />
+            <input type="text" id="firstname" name="firstname" required /><br />
+
+            <label for="lastname">Last Name:</label><br />
+            <input type="text" id="lastname" name="lastname" required /><br />
+            <button type="button" class="next-button" onclick="nextCard(this)">Next</button>
+            <div class="error-container" id="username-error"></div>
+        </div>
+
+        <div class="card-container" id="card2">
+            <label for="aadharcard">Aadhar Card:</label><br />
+            <input type="text" id="aadharcard" name="aadharcard" required /><br />
+
+            <label for="dob">Date of Birth:</label><br />
+            <input type="date" id="dob" name="dob" required /><br />
+            <button type="button" class="next-button" onclick="nextCard(this)">Next</button>
+            <button type="button" class="back-button" onclick="prevCard(this)">Back</button>
+            <div class="error-container" id="aadharcard-error"></div>
+        </div>
+
+        <!-- Add other card containers here -->
+
+        <div class="card-container">
+            <label for="email">Email:</label><br />
+            <input type="email" id="email" name="email" required /><br />
+
+            <label for="password">Password:</label><br />
+            <input type="password" id="password" name="password" minlength="6" required /><br />
+            <input type="submit" value="Submit">
+            <div class="error-container" id="email-error"></div>
+        </div>
+    </form>
+
+    <script>
+        function nextCard(button) {
+            var currentCard = button.parentElement;
+            var nextCard = currentCard.nextElementSibling;
+            if (nextCard !== null) {
+                // Example of error handling for username field
+                var username = document.getElementById('username').value;
+                if (username.trim() === "") {
+                    document.getElementById('username-error').innerHTML = "<span>Error: Username cannot be empty.</span>";
+                    return;
+                } else {
+                    document.getElementById('username-error').innerHTML = "";
+                }
+                // Clear error message if it exists
+                var errorContainer = currentCard.querySelector('.error-container');
+                if (errorContainer) {
+                    errorContainer.innerHTML = '';
+                }
+                currentCard.classList.remove("active-card");
+                nextCard.classList.add("active-card");
+            }
+        }
+
+        function prevCard(button) {
+            var currentCard = button.parentElement;
+            var prevCard = currentCard.previousElementSibling;
+            if (prevCard !== null) {
+                currentCard.classList.remove("active-card");
+                prevCard.classList.add("active-card");
+            }
+        }
+    </script>
+</body>
+
+</html>
